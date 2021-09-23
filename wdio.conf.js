@@ -6,38 +6,44 @@ exports.config = {
         // 'path/to/excluded/files'
     ],
     path: '/wd/hub/',
+
     maxInstances: 10,
 
     capabilities: [{
-        "deviceName": "Huawei",
-        "udid": "9WV4C18511024347",
-        "platformName": "Android",
-        "appPackage": "com.Hubapps.DeepL",
-        "appActivity": ".MainActivity",
-        //"app":"./Android/data/com.Hubapps.DeepL"
+        automationName: "appium",
+        sessionOverride: true,
+        debugLogSpacing: true,
+        platformVersion: "9.1",
+        deviceName: "Huawei",
+        udid: "9WV4C18511024347",
+        platformName: "Android",
+        appPackage: "com.Hubapps.DeepL",
+        appActivity: "com.Hubapps.DeepL.MainActivity"
+      //  "app":"./Android/data/com.Hubapps.DeepL"
     }],
     logLevel: 'info',
     bail: 0,
-    baseUrl: 'http://localhost',
-    waitforTimeout: 10000,
+    baseUrl: 'http://localhost:4723/',
+    waitForTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
-    port: 4723,
-    services: ['appium'],
-    // appium: {
-    //     args: {
-    //         address: "127.0.0.1",
-    //         commandTimeout: "10000",
-    //         sessionOverride: true,
-    //         debugLogSpacing: true,
-    //         deviceName: "Huawei",
-    //         udid: "9WV4C18511024347",
-    //         platformName: "Android",
-    //         platformVersion: "9",
-    //         appPackage: "com.google.android.youtube",
-    //         appActivity: "com.google.android.apps.youtube.app.watchwhile.WatchWhileActivity"
-    //     }
-    // },
+    port: 4723, // default appium port
+    services: [
+        ['appium', {
+            args: {
+                address: '127.0.0.1',
+                commandTimeout: '7200',
+                sessionOverride: true,
+                debugLogSpacing: true,
+                platformVersion: "9.1",
+                deviceName: "Huawei",
+                udid: "9WV4C18511024347",
+                platformName: "Android",
+                appPackage: "com.Hubapps.DeepL",
+                appActivity: "com.Hubapps.DeepL.MainActivity"
+            }
+        }]
+    ],
     framework: 'mocha',
     reporters: ['spec'],
     mochaOpts: {
